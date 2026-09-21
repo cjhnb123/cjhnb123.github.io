@@ -1,0 +1,105 @@
+---
+layout: default
+---
+
+<main id="main-content" class="page-shell home">
+  <div class="home-hero">
+    <section id="about" class="intro" aria-labelledby="intro-title">
+      <h1 id="intro-title" class="intro__title">
+        {% for line in site.data.home.intro.title_lines %}
+          <span>{{ line }}</span>
+        {% endfor %}
+      </h1>
+      <span class="intro__accent" aria-hidden="true"></span>
+      <div class="intro__description">
+        {% for line in site.data.home.intro.description %}
+          <p>{{ line }}</p>
+        {% endfor %}
+      </div>
+      <ul class="intro__keywords" aria-label="写作主题">
+        {% for keyword in site.data.home.intro.keywords %}
+          <li>{{ keyword }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section id="featured" class="featured" aria-labelledby="featured-title">
+      <div class="featured__index" aria-hidden="true">
+        <span>{{ site.data.home.featured.eyebrow }}</span>
+        <span>{{ site.data.home.featured.number }}</span>
+      </div>
+      <div class="feature-art" aria-hidden="true">
+        <span class="feature-art__gray"></span>
+        <span class="feature-art__red"></span>
+      </div>
+      <div class="featured__copy">
+        <p class="section-kicker section-kicker--red">{{ site.data.home.featured.label }}</p>
+        <h2 id="featured-title" class="featured__title">
+          {% for line in site.data.home.featured.title_lines %}
+            <span>{{ line }}</span>
+          {% endfor %}
+        </h2>
+        <span class="featured__rule" aria-hidden="true"></span>
+        <span class="arrow arrow--featured" aria-hidden="true">→</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="home-content">
+    <section id="articles" class="articles" aria-labelledby="articles-title">
+      <h2 id="articles-title" class="section-heading section-heading--blue">{{ site.data.home.labels.articles }}</h2>
+      <ol class="article-list">
+        {% for article in site.data.home.articles %}
+          <li class="article-row">
+            <span class="number-mark number-mark--{{ article.accent }}" aria-hidden="true">
+              <span>{{ article.number }}</span><span class="number-mark__line"></span><span class="number-mark__square"></span>
+            </span>
+            {% if article contains "title" %}
+              <h3 class="article-row__title">{{ article.title }}</h3>
+            {% endif %}
+            {% if article contains "date" and article contains "iso_date" %}
+              <time class="article-row__date" datetime="{{ article.iso_date }}">{{ article.date }}</time>
+            {% endif %}
+            <span class="arrow" aria-hidden="true">→</span>
+          </li>
+        {% endfor %}
+      </ol>
+      <div class="article-row article-row--placeholder" aria-hidden="true">
+        <span class="number-mark number-mark--{{ site.data.home.article_placeholder.accent }}">
+          <span>{{ site.data.home.article_placeholder.number }}</span><span class="number-mark__line"></span><span class="number-mark__square"></span>
+        </span>
+      </div>
+    </section>
+
+    <section id="learning" class="learning" aria-labelledby="learning-title">
+      <h2 id="learning-title" class="section-heading section-heading--yellow">{{ site.data.home.labels.learning }}</h2>
+      <ul class="learning-list">
+        {% for item in site.data.home.learning.items %}
+          <li class="learning-card">
+            <span class="learning-card__dot learning-card__dot--{{ item.accent }}" aria-hidden="true"></span>
+            <span>{{ item.title }}</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="learning-note">
+        <span class="learning-note__squares" aria-hidden="true"></span>
+        <p>
+          {% for line in site.data.home.learning.note %}
+            <span>{{ line }}</span>
+          {% endfor %}
+        </p>
+      </div>
+    </section>
+
+    <aside class="manifesto" aria-label="创作宣言">
+      <p>
+        {% for line in site.data.home.manifesto %}
+          <span>{{ line }}</span>
+        {% endfor %}
+      </p>
+      <span class="manifesto__rule" aria-hidden="true"></span>
+      <span class="manifesto__arc" aria-hidden="true"></span>
+    </aside>
+  </div>
+</main>

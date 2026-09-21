@@ -53,3 +53,37 @@ test("home data contains the approved copy and two real articles", () => {
   assert.match(data, /^\s+accent: yellow$/m);
   assert.doesNotMatch(data, /^site_identity:/m);
 });
+
+test("Liquid templates expose the required semantic structure", () => {
+  for (const path of [
+    "_layouts/default.html",
+    "_includes/header.html",
+    "_includes/footer.html",
+    "index.html"
+  ]) {
+    assert.equal(existsSync(path), true, `${path} must exist`);
+  }
+
+  const layout = read("_layouts/default.html");
+  assert.match(layout, /<html lang="{{ site\.lang }}">/);
+  assert.match(layout, /class="skip-link" href="#main-content"/);
+  assert.match(layout, /{% include header\.html %}/);
+  assert.match(layout, /{% include footer\.html %}/);
+  assert.doesNotMatch(layout, /<script\b/i);
+
+  const header = read("_includes/header.html");
+  assert.match(header, /href="#{{ item\.target }}"/);
+  assert.match(header, /{{ site\.title }}/);
+
+  const page = read("index.html");
+  for (const id of ["main-content", "about", "featured", "articles", "learning"]) {
+    assert.match(page, new RegExp(`id="${id}"`));
+  }
+  assert.match(page, /for article in site\.data\.home\.articles/);
+  assert.match(page, /article contains "title"/);
+  assert.match(page, /article contains "date"/);
+  assert.match(page, /article-row--placeholder/);
+  assert.match(page, /aria-hidden="true"/);
+  assert.doesNotMatch(page, /href=""/);
+  assert.doesNotMatch(page, /href="#"/);
+});

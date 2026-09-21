@@ -1,0 +1,76 @@
+navigation:
+  - label: 文章
+    target: articles
+    active: true
+  - label: 专题
+    target: featured
+    active: false
+  - label: 关于
+    target: about
+    active: false
+
+intro:
+  title_lines:
+    - 知识，在阅读与
+    - 实践之间生长
+  description:
+    - 记录思考，整理方法，连接灵感。
+    - 在不断变化的世界里，构建一个可以长期生长的知识系统。
+  keywords:
+    - READ
+    - THINK
+    - BUILD
+    - SHARE
+
+featured:
+  eyebrow: FEATURED
+  label: 本期精选
+  number: "01"
+  title_lines:
+    - 如何搭建一个
+    - 长期生长的个人博客
+
+labels:
+  articles: 最新文章
+  learning: 正在学习
+
+articles:
+  - number: "01"
+    title: 设计系统
+    date: "2026.09.20"
+    iso_date: "2026-09-20"
+    accent: blue
+  - number: "02"
+    title: Linux 笔记
+    date: "2026.09.20"
+    iso_date: "2026-09-20"
+    accent: red
+
+article_placeholder:
+  number: "03"
+  accent: yellow
+
+learning:
+  items:
+    - title: 设计系统
+      accent: blue
+    - title: Linux 笔记
+      accent: red
+  note:
+    - 持续阅读
+    - 持续实践
+    - 成为更好的自己
+
+manifesto:
+  - IDEAS
+  - FOR A
+  - BRIGHTER
+  - TOMORROW
+
+footer:
+  date: "2026.09.20"
+  iso_date: "2026-09-20"
+  accents:
+    - blue
+    - red
+    - yellow

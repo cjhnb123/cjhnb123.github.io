@@ -1,0 +1,88 @@
+navigation:
+  - label: 文章
+    target: articles
+    active: true
+  - label: 专题
+    target: featured
+    active: false
+  - label: 关于
+    target: about
+    active: false
+
+intro:
+  title_lines:
+    - 知识，在阅读与
+    - 实践之间生长
+  description:
+    - 记录思考，整理方法，连接灵感。
+  keywords:
+    - READ
+
+featured:
+  eyebrow: FEATURED
+  label: 本期精选
+  number: "01"
+  title_lines:
+    - 如何搭建一个长期生长的个人博客
+
+labels:
+  articles: 最新文章
+  learning: 正在学习
+
+articles:
+  - number: "01"
+    title: 完整文章
+    date: "2026.09.20"
+    iso_date: "2026-09-20"
+    accent: blue
+  - title: 仅标题
+  - number: "03"
+    title: 缺少 ISO 日期
+    date: "2026.09.20"
+    accent: red
+  - number: "04"
+    title: 空白日期
+    date: "   "
+    iso_date: "2026-09-20"
+    accent: yellow
+  - number: "05"
+    title: 空白 ISO 日期
+    date: "2026.09.20"
+    iso_date: "   "
+    accent: blue
+  - number: "06"
+    date: "2026.09.20"
+    iso_date: "2026-09-20"
+    accent: red
+    fixture_note: 缺少标题
+  - number: "07"
+    title: "   "
+    date: "2026.09.20"
+    iso_date: "2026-09-20"
+    accent: yellow
+    fixture_note: 空白标题
+
+article_placeholder:
+  number: "08"
+  accent: yellow
+
+learning:
+  items:
+    - title: 设计系统
+      accent: blue
+  note:
+    - 持续阅读
+
+manifesto:
+  - IDEAS
+  - FOR A
+  - BRIGHTER
+  - TOMORROW
+
+footer:
+  date: "2026.09.20"
+  iso_date: "2026-09-20"
+  accents:
+    - blue
+    - red
+    - yellow

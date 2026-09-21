@@ -87,3 +87,39 @@ test("Liquid templates expose the required semantic structure", () => {
   assert.doesNotMatch(page, /href=""/);
   assert.doesNotMatch(page, /href="#"/);
 });
+
+test("styles define the approved tokens and shared accessibility rules", () => {
+  for (const path of [
+    "_sass/_tokens.scss",
+    "_sass/_base.scss",
+    "assets/css/main.scss"
+  ]) {
+    assert.equal(existsSync(path), true, `${path} must exist`);
+  }
+
+  const tokens = read("_sass/_tokens.scss").toLowerCase();
+  for (const color of [
+    "#f8f7f3",
+    "#f2f1ed",
+    "#111111",
+    "#6c6b68",
+    "#1769e8",
+    "#e8372f",
+    "#f5be20"
+  ]) {
+    assert.ok(tokens.includes(color), `missing color: ${color}`);
+  }
+  assert.match(tokens, /georgia/);
+  assert.match(tokens, /noto serif sc/);
+  assert.match(tokens, /pingfang sc/);
+
+  const base = read("_sass/_base.scss");
+  assert.match(base, /max-width:\s*\$page-max/);
+  assert.match(base, /:focus-visible/);
+  assert.match(base, /scroll-margin-top/);
+
+  const entry = read("assets/css/main.scss");
+  for (const partial of ["tokens", "base", "home", "responsive"]) {
+    assert.ok(entry.includes(`@import "${partial}"`), `missing import: ${partial}`);
+  }
+});

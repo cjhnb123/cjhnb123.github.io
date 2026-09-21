@@ -123,3 +123,18 @@ test("styles define the approved tokens and shared accessibility rules", () => {
     assert.ok(entry.includes(`@import "${partial}"`), `missing import: ${partial}`);
   }
 });
+
+test("desktop styles implement approved grids and only gray-red artwork", () => {
+  assert.equal(existsSync("_sass/_home.scss"), true);
+  const css = read("_sass/_home.scss");
+
+  assert.match(css, /\.home-hero\s*{[\s\S]*grid-template-columns:/);
+  assert.match(css, /\.home-content\s*{[\s\S]*grid-template-columns:/);
+  assert.match(css, /\.feature-art__gray/);
+  assert.match(css, /\.feature-art__red/);
+  assert.doesNotMatch(css, /feature-art__(blue|yellow|black)/);
+  assert.match(css, /\.number-mark__line/);
+  assert.match(css, /\.number-mark__square/);
+  assert.match(css, /\.manifesto__arc/);
+  assert.doesNotMatch(css, /height:\s*100vh/);
+});

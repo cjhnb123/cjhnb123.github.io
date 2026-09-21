@@ -35,3 +35,11 @@ jobs:
 
       - name: Run generated HTML contracts
         run: node --test test/generated-homepage.test.mjs
+
+      - name: Upload generated site for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: homepage-site
+          path: _site
+          if-no-files-found: error
+          retention-days: 7

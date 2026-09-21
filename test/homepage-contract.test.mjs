@@ -151,6 +151,7 @@ test("responsive CSS pins every approved boundary and overflow safeguard", () =>
   assert.match(css, /padding-inline:\s*20px/);
   assert.match(css, /min-height:\s*44px/);
   assert.match(css, /overflow-wrap:\s*anywhere/);
+  assert.match(css, /\.site-brand\s*\{[^}]*min-height:\s*44px/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
   assert.match(css, /transition:\s*none/);
 });

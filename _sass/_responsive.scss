@@ -3,6 +3,49 @@
   .home-content {
     width: 100%;
   }
+
+  .site-brand {
+    font-size: 1.35rem;
+  }
+
+  .home-hero {
+    grid-template-columns: minmax(320px, 0.95fr) minmax(0, 2fr);
+  }
+
+  .intro {
+    padding: clamp(50px, 3.7vw, 58px) clamp(34px, 3.3vw, 52px) 36px 0;
+  }
+
+  .intro__title,
+  .featured__title {
+    line-height: 1.26;
+  }
+
+  .intro__title {
+    font-size: clamp(3rem, 3.55vw, 3.5rem);
+  }
+
+  .feature-art {
+    margin-left: 32px;
+  }
+
+  .featured__copy {
+    padding: 58px clamp(34px, 3vw, 48px) 42px;
+  }
+
+  .featured__title {
+    font-size: clamp(2.65rem, 3.25vw, 3.2rem);
+  }
+
+  .home-content {
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.75fr) minmax(220px, 0.6fr);
+  }
+}
+
+@media (min-width: 1500px) {
+  .page-shell {
+    padding-inline: 0;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -53,6 +96,9 @@
   }
 
   .site-brand {
+    display: flex;
+    min-height: 44px;
+    align-items: center;
     overflow-wrap: anywhere;
   }
 

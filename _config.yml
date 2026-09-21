@@ -1,0 +1,25 @@
+title: "Joel_Chen JH / NOTES"
+description: "记录思考，整理方法，连接灵感。"
+lang: zh-CN
+url: "https://cjhnb123.github.io"
+baseurl: ""
+timezone: Asia/Shanghai
+markdown: kramdown
+
+liquid:
+  error_mode: strict
+  strict_filters: true
+  strict_variables: true
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+exclude:
+  - docs
+  - test
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

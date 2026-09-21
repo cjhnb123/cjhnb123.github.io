@@ -26,3 +26,30 @@ test("Jekyll foundation is pinned and strict", () => {
   assert.match(config, /^\s+strict_variables: true$/m);
   assert.doesNotMatch(config, /^\s*theme:/m);
 });
+
+test("home data contains the approved copy and two real articles", () => {
+  assert.equal(existsSync("_data/home.yml"), true);
+  const data = read("_data/home.yml");
+
+  for (const text of [
+    "知识，在阅读与",
+    "实践之间生长",
+    "记录思考，整理方法，连接灵感。",
+    "如何搭建一个",
+    "长期生长的个人博客",
+    "设计系统",
+    "Linux 笔记",
+    "持续阅读",
+    "持续实践",
+    "成为更好的自己",
+    "2026.09.20"
+  ]) {
+    assert.ok(data.includes(text), `missing copy: ${text}`);
+  }
+
+  assert.equal((data.match(/^\s+- number: "0[12]"$/gm) ?? []).length, 2);
+  assert.match(data, /^article_placeholder:$/m);
+  assert.match(data, /^\s+number: "03"$/m);
+  assert.match(data, /^\s+accent: yellow$/m);
+  assert.doesNotMatch(data, /^site_identity:/m);
+});

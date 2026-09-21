@@ -138,3 +138,19 @@ test("desktop styles implement approved grids and only gray-red artwork", () => 
   assert.match(css, /\.manifesto__arc/);
   assert.doesNotMatch(css, /height:\s*100vh/);
 });
+
+test("responsive CSS pins every approved boundary and overflow safeguard", () => {
+  assert.equal(existsSync("_sass/_responsive.scss"), true);
+  const css = read("_sass/_responsive.scss");
+
+  assert.match(css, /min-width:\s*1025px/);
+  assert.match(css, /min-width:\s*768px/);
+  assert.match(css, /max-width:\s*1024px/);
+  assert.match(css, /max-width:\s*767px/);
+  assert.match(css, /max-width:\s*419px/);
+  assert.match(css, /padding-inline:\s*20px/);
+  assert.match(css, /min-height:\s*44px/);
+  assert.match(css, /overflow-wrap:\s*anywhere/);
+  assert.match(css, /prefers-reduced-motion:\s*reduce/);
+  assert.match(css, /transition:\s*none/);
+});

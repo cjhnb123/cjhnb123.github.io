@@ -88,6 +88,19 @@ test("Liquid templates expose the required semantic structure", () => {
   assert.doesNotMatch(page, /href="#"/);
 });
 
+test("article rows require nonblank titles and omit incomplete optional fields", () => {
+  const page = read("index.html");
+
+  assert.match(page, /assign article_title = article\.title \| strip/);
+  assert.match(page, /if article_title != blank/);
+  assert.match(page, /assign article_date = article\.date \| strip/);
+  assert.match(page, /assign article_iso_date = article\.iso_date \| strip/);
+  assert.match(page, /if article_date != blank and article_iso_date != blank/);
+  assert.match(page, /assign article_number = article\.number \| strip/);
+  assert.match(page, /assign article_accent = article\.accent \| strip/);
+  assert.match(page, /if article_number != blank and article_accent != blank/);
+});
+
 test("styles define the approved tokens and shared accessibility rules", () => {
   for (const path of [
     "_sass/_tokens.scss",

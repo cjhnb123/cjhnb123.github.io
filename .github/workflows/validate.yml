@@ -33,13 +33,18 @@ jobs:
       - name: Build Jekyll strictly
         run: bundle exec jekyll build --strict_front_matter --trace
 
+      - name: Build optional article fixture
+        run: bundle exec jekyll build --strict_front_matter --trace --config _config.yml,test/fixtures/optional-articles.yml --destination _site-optional
+
       - name: Run generated HTML contracts
-        run: node --test test/generated-homepage.test.mjs
+        run: node --test test/generated-homepage.test.mjs test/optional-article-fields.test.mjs
 
       - name: Upload generated site for visual review
         uses: actions/upload-artifact@v4
         with:
           name: homepage-site
-          path: _site
+          path: |
+            _site
+            _site-optional
           if-no-files-found: error
           retention-days: 7

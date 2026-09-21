@@ -19,6 +19,7 @@ Open http://127.0.0.1:4000/.
 
     node --test test/homepage-contract.test.mjs
     bundle exec jekyll build --strict_front_matter --trace
-    node --test test/generated-homepage.test.mjs
+    bundle exec jekyll build --strict_front_matter --trace --config _config.yml,test/fixtures/optional-articles.yml --destination _site-optional
+    node --test test/generated-homepage.test.mjs test/optional-article-fields.test.mjs
 
 The blog/homepage branch is validated by .github/workflows/validate.yml.

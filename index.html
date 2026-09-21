@@ -50,18 +50,35 @@ layout: default
       <h2 id="articles-title" class="section-heading section-heading--blue">{{ site.data.home.labels.articles }}</h2>
       <ol class="article-list">
         {% for article in site.data.home.articles %}
-          <li class="article-row">
-            <span class="number-mark number-mark--{{ article.accent }}" aria-hidden="true">
-              <span>{{ article.number }}</span><span class="number-mark__line"></span><span class="number-mark__square"></span>
-            </span>
-            {% if article contains "title" %}
-              <h3 class="article-row__title">{{ article.title }}</h3>
+          {% if article contains "title" %}
+            {% assign article_title = article.title | strip %}
+            {% if article_title != blank %}
+              <li class="article-row">
+                {% if article contains "number" %}
+                  {% assign article_number = article.number | strip %}
+                  {% if article contains "accent" %}
+                    {% assign article_accent = article.accent | strip %}
+                    {% if article_number != blank and article_accent != blank %}
+                      <span class="number-mark number-mark--{{ article_accent }}" aria-hidden="true">
+                        <span>{{ article_number }}</span><span class="number-mark__line"></span><span class="number-mark__square"></span>
+                      </span>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+                <h3 class="article-row__title">{{ article_title }}</h3>
+                {% if article contains "date" %}
+                  {% assign article_date = article.date | strip %}
+                  {% if article contains "iso_date" %}
+                    {% assign article_iso_date = article.iso_date | strip %}
+                    {% if article_date != blank and article_iso_date != blank %}
+                      <time class="article-row__date" datetime="{{ article_iso_date }}">{{ article_date }}</time>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+                <span class="arrow" aria-hidden="true">→</span>
+              </li>
             {% endif %}
-            {% if article contains "date" and article contains "iso_date" %}
-              <time class="article-row__date" datetime="{{ article.iso_date }}">{{ article.date }}</time>
-            {% endif %}
-            <span class="arrow" aria-hidden="true">→</span>
-          </li>
+          {% endif %}
         {% endfor %}
       </ol>
       <div class="article-row article-row--placeholder" aria-hidden="true">

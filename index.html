@@ -52,13 +52,13 @@ layout: default
         {% for article in site.data.home.articles %}
           {% if article contains "title" %}
             {% assign article_title = article.title | strip %}
-            {% if article_title != blank %}
+            {% if article_title != empty %}
               <li class="article-row">
                 {% if article contains "number" %}
                   {% assign article_number = article.number | strip %}
                   {% if article contains "accent" %}
                     {% assign article_accent = article.accent | strip %}
-                    {% if article_number != blank and article_accent != blank %}
+                    {% if article_number != empty and article_accent != empty %}
                       <span class="number-mark number-mark--{{ article_accent }}" aria-hidden="true">
                         <span>{{ article_number }}</span><span class="number-mark__line"></span><span class="number-mark__square"></span>
                       </span>
@@ -70,7 +70,7 @@ layout: default
                   {% assign article_date = article.date | strip %}
                   {% if article contains "iso_date" %}
                     {% assign article_iso_date = article.iso_date | strip %}
-                    {% if article_date != blank and article_iso_date != blank %}
+                    {% if article_date != empty and article_iso_date != empty %}
                       <time class="article-row__date" datetime="{{ article_iso_date }}">{{ article_date }}</time>
                     {% endif %}
                   {% endif %}
